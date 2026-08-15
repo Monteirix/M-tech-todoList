@@ -22,7 +22,13 @@ public class TaskService {
 
     public Task save(Task task) { return  taskRepository.save(task); }
 
-    public void deleteById(Long id){ taskRepository.deleteById(id);
+    public boolean deleteById(Long id){
+       if(taskRepository.existsById(id)){
+           taskRepository.deleteById(id);
+       return true;
+       }else{
+           return false;
+       }
     }
 
 
