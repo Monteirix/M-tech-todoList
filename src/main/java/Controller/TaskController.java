@@ -9,8 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
+import java.util.Optional;
 
 
 @RestController
@@ -43,16 +42,23 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id){
-        boolean deletado = service.deleteById(id);
+        boolean deleted = service.deleteById(id);
 
-        if (deletado){
+        if (deleted){
             return  ResponseEntity.noContent().build();
         }else{
             return ResponseEntity.notFound().build();
         }
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task taskDetails){
+        Optional<Task>  updatedTask =  service.update(id, taskDetails);
 
+        return updatedTask
+                .map(task -> ResponseEntity.ok(task))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
 }
