@@ -1,8 +1,7 @@
-package Services;
+package com.m2tech.to_do_List.services;
 
-import Entities.Task;
-import Repositories.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.m2tech.to_do_List.entities.Task;
+import com.m2tech.to_do_List.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,12 @@ import java.util.Optional;
 @Service
 public class TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
+
+    private final TaskRepository taskRepository;
+
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     public List<Task> findAll(){return taskRepository.findAll();
     }

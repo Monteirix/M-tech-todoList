@@ -1,4 +1,4 @@
-package Entities;
+package com.m2tech.to_do_List.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,7 @@
-package Controller;
+package com.m2tech.to_do_List.controller;
 
-import Entities.Task;
-import Services.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.m2tech.to_do_List.entities.Task;
+import com.m2tech.to_do_List.services.TaskService;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,12 @@ import java.util.Optional;
 @RequestMapping("/api/task")
 @CrossOrigin("*")
 public class TaskController {
-    @Autowired
-    private TaskService service;
+
+    private final TaskService service;
+
+    public TaskController(TaskService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Task>  getAll(){
